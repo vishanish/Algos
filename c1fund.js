@@ -118,8 +118,25 @@ and 1, coincidentally, have values of 0 and 1. Your function should accept an ar
 Fibonacci number.
 Examples: fibonacci(2) = 1, fibonacci(3) = 2, fibonacci(4) = 3, fibonacci(5) = 5, etc */
 
+function fibonacci(num){
+    let arr = [0,1,1];
+    for(let i = 3; i <=num; i ++){
+        arr.push((arr[i-2]) + arr[i-1]);
+    }
+    return arr[arr.length-1];
+}
+console.log(fibonacci(5));
+
 /*Implement a function that accepts two non-negative integers as arguments. Function lastDigitAtoB(a,b) 
 should return the last digit of the first number (a) raised to an exponent of the second number (b).
 Examples: given (3, 4), you should return 1 (the last digit of 81: 3 * 3 * 3 * 3). Given (12, 5), 
 return 2 (the least significant digit of 248832, which is 12 * 12 * 12 * 12 * 12). */
 
+function lastDigitAtoB(a, b){
+    let value = 1;
+    for( let i = 1; i <= b; i++){
+        value *= a;
+    }
+    return (value%10);
+}
+console.log(lastDigitAtoB(5, 5));
