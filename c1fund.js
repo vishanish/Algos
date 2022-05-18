@@ -107,9 +107,51 @@ Implement a ‘die’ that randomly returns an integer between 1 and 6 inclusive
 dice, tracking the statistics until doubles are rolled. Display the number of rolls, min, max, 
 and average. */
 
+function die(){
+    let rolls = 0;
+    let min = 6;
+    let max = 0;
+    // let average = 0;
+    let sum = 0;
+    let die1 = 0;
+    let die2 = 1;
+    while( die1 != die2){
+        die1 = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+        console.log(die1);
+        die2 = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+        console.log(die2);
+        rolls += 1;
+        sum += die1 + die2;
+        if(die1 < min){
+            min = die1;
+        }
+        else if (die2 < min){
+            min = die2;
+        }
+        if(die1 > max){
+            max = die1;
+        }
+        else if( die2 > max){
+            max = die2;
+        }
+    }
+    return (["number of rolls: " + rolls, ", sum: " + sum, ", max: " + max, ", min: " + min, ", average: " + (sum/rolls), ", die1: " + die1, ", die2: " + die2]);
+}
+
+console.log(die());
+
 /*Sum To One Digit
 Implement a function sumToOne(num) that, given a number, sums that number’s digits
 repeatedly until the sum is only one digit. Return that final one digit result. */
+
+function sumToOne(num){
+    let lumsum = num;
+    for(let i = 0; i < num.toString().length; i++){
+        lumsum = (lumsum%10)+((lumsum - lumsum%10)/10);
+    }
+    return lumsum;
+}
+console.log(sumToOne(789));
 
 /*Fibonacci
 Implement the Fibonacci function, a famous mathematical equation that generates a numerical
@@ -140,3 +182,23 @@ function lastDigitAtoB(a, b){
     return (value%10);
 }
 console.log(lastDigitAtoB(5, 5));
+
+/*Clock Hand Angles
+Traditional clocks are increasingly uncommon, but most can still read rotating hands of hours, minutes,
+and seconds.
+Create function clockHandAngles(seconds) that, given the number of seconds since 12:00:00, will
+print the angles (in degrees) of the hour, minute and second hands. As a quick review, there are 360
+degrees in a full arc rotation. Treat “straight-up” 12:00:00 as 0 degrees for all hands.*/
+
+function clockHandAngles(seconds){
+    let remainingSeconds = seconds%60;
+    let wholeMinutes = Math.floor(seconds/60);
+    let remainingMinutes = Math.floor(wholeMinutes%60);
+    let wholeHours = Math.floor(wholeMinutes/60);
+    let secondDegrees = remainingSeconds * 6;
+    let minuteDegrees = (remainingMinutes * 6) + (remainingSeconds *0.1);
+    let hourDegrees = (wholeHours * 30) + (remainingMinutes* 0.5);
+    return ["seconds: " + secondDegrees, ", minutes: " + minuteDegrees, ", hours: " + hourDegrees];
+    
+}
+console.log(clockHandAngles(3661));
